@@ -1,0 +1,27 @@
+class Estadistica:
+    def __init__(self, vec):
+        self.__vec = vec
+
+    def promedio(self):
+        suma = 0
+        for i in self.__vec:
+            suma += i
+        return suma / len(self.__vec)
+
+    def desviacion(self):
+        prom = self.promedio()
+        suma = 0
+        for i in self.__vec:
+            suma += (i - prom) ** 2
+        return (suma / (len(self.__vec) - 1)) ** 0.5
+
+
+# PROGRAMA PRINCIPAL
+vec = [0] * 10
+
+for i in range(len(vec)):
+    vec[i] = float(input(f"Ingrese el numero {i+1}: ")) 
+e1 = Estadistica(vec)
+
+print(f"El promedio es: {e1.promedio():.2f}")
+print(f"La desviacion estandar es: {e1.desviacion():.2f}")
