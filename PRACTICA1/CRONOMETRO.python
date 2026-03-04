@@ -1,0 +1,58 @@
+import time
+import random
+class Cronometro:
+
+    # Constructor
+    def __init__(self):
+        self.inicia = time.time()
+        self.finaliza = 0
+
+    # Getter inicia
+    def getInicia(self):
+        return self.inicia
+
+    # Getter finaliza
+    def getFinaliza(self):
+        return self.finaliza
+
+    # Método inicia()
+    def inicia_crono(self):
+        self.inicia = time.time()
+
+    # Método detiene()
+    def detiene(self):
+        self.finaliza = time.time()
+
+    # Método lapseoDeTiempo()
+    def lapseoDeTiempo(self):
+        return (self.finaliza - self.inicia) * 1000  # milisegundos
+
+
+# -------- ORDENACIÓN POR SELECCIÓN --------
+def ordenacion_seleccion(lista):
+    n = len(lista)
+    for i in range(n):
+        minimo = i
+        for j in range(i + 1, n):
+            if lista[j] < lista[minimo]:
+                minimo = j
+        lista[i], lista[minimo] = lista[minimo], lista[i]
+
+
+# -------- PROGRAMA PRINCIPAL --------
+if __name__ == "__main__":
+
+    # Crear lista de 100.000 números aleatorios
+    numeros = []
+    for i in range(100000):
+        numeros.append(random.randint(1, 100000))
+
+    cronometro = Cronometro()
+
+    cronometro.inicia_crono()   # Inicia medición
+
+    ordenacion_seleccion(numeros)   # Ordenar lista
+
+    cronometro.detiene()   # Detener medición
+
+    print("Tiempo de ejecución:", cronometro.lapseoDeTiempo(), "milisegundos")
