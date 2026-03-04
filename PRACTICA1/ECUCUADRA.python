@@ -1,0 +1,30 @@
+class EcuacionLineal:
+    def __init__(self, a, b, c): 
+        self.__a = a
+        self.__b = b
+        self.__c = c
+
+    def getDiscriminante(self):
+        return self.__b**2 - 4*self.__a*self.__c
+
+    def Raiz1(self):
+        return (-self.__b + self.getDiscriminante()**0.5) / (2*self.__a)
+
+    def Raiz2(self):
+        return (-self.__b - self.getDiscriminante()**0.5) / (2*self.__a)
+
+
+# PROGRAMA PRINCIPAL
+a = float(input("Ingrese a: "))
+b = float(input("Ingrese b: "))
+c = float(input("Ingrese c: "))
+
+r1 = EcuacionLineal(a, b, c)
+
+if r1.getDiscriminante() > 0:
+    print("La raiz 1 es:", r1.Raiz1())
+    print("La raiz 2 es:", r1.Raiz2())
+elif r1.getDiscriminante() == 0:
+    print("La raiz es:", r1.Raiz1())
+else:
+    print("No tiene raices reales")
